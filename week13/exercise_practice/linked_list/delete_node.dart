@@ -36,23 +36,28 @@ class LinkedList {
     }
   }
 
-  void deleteLinkedList(dynamic value) {
-    Node? currentNode = head;
-    Node? prev = null;
-    while (currentNode != null) {
-      if (currentNode.data == value) {
-        if (prev == null) {
-          head = currentNode.next;
+  deleteLinkedList(int value) {
+    if (head == null) {
+      print('empty list');
+    return;
+    } 
+      Node? currentNode = head;
+      Node? prev = null;
+      while (currentNode != null) {
+        if (currentNode.data == value) {
+          if (prev == null) {
+            head = currentNode.next;
+          } else {
+            prev.next = currentNode.next;
+          }
+          return;
         } else {
-          prev.next = currentNode.next;
+          prev = currentNode;
+          currentNode = currentNode.next;
         }
-        return;
-      } else {
-        prev = currentNode;
-        currentNode = currentNode.next;
       }
-    }
-    print('No such value');
+      print("nothing matches to delete");
+    
   }
 }
 
