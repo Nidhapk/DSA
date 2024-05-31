@@ -1,6 +1,6 @@
+/** delete even number from stack */
 void main() {
   List<int> stack = [2, 6, 7, 4, 9, 3];
-  int count = 1;
   List<int> newlist = [];
   while (stack.isNotEmpty) {
     if (stack.last % 2 != 0) {
@@ -8,5 +8,6 @@ void main() {
     }
     stack.removeLast();
   }
-  print(newlist);
+  stack.addAll(newlist);
+  print(stack);
 }
