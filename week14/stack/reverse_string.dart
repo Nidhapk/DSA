@@ -12,4 +12,17 @@ reverse(String s) {
 
 void main() {
   print(reverse('Nidha'));
+
+
+  
+  /**another way  */
+
+  // String s = 'String';
+  // List<String> stack = s.split('');
+  // List<String> reversed=[];
+  // while (stack.isNotEmpty) {
+  //   reversed.add(stack.removeLast());
+  // }
+  // s = reversed.join();
+  // print(s);
 }
