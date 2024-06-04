@@ -1,59 +1,81 @@
-import 'dart:io';
-
 class Node {
   int data;
   Node? next;
   Node(this.data, {this.next});
 }
 
-class LinkedList {
-  Node? rear;
-  Node? front;
-  LinkedList() {
-    rear = front = null;
+class stack {
+  Node? top = null;
+  push(int data) {
+    Node? newNode = Node(data);
+    if (top == null) {
+      top = newNode;
+    } else {
+      newNode.next = top;
+      top = newNode;
+    }
   }
-  enqueqe(List<int> dataList) {
-    for (var data in dataList) {
-      Node? newNode = Node(data);
-      if (rear == null) {
-        rear = front = newNode;
-      } else {
-        rear?.next = newNode;
-        rear = newNode;
-      }
+
+  pop() {
+    if (top == null) {
+      return;
+    } else {
+      top = top?.next;
+    }
+  }
+}
+
+class Queue {
+  Node? front = null;
+  Node? rear = null;
+  enqueue(int data) {
+    Node? newNode = Node(data);
+    if (rear == null) {
+      front = rear = newNode;
+    } else {
+      rear?.next = newNode;
+      rear = newNode;
     }
   }
 
   dequeue() {
     if (front == null) {
-      print('empty');
+      return;
+    } else if (front == rear) {
+      front = rear = null;
     } else {
       front = front?.next;
     }
   }
 
-  reverse() {
-    front = rear;
+  display() {
     Node? current = front;
     while (current != null) {
       print(current.data);
       current = current.next;
     }
   }
-
-  printList() {
-    Node? current = front;
-    while (current != null) {
-      stdout.write('${current.data} ');
-      current = current.next;
+//to reverse an queue using stack
+  reversed() {
+    stack temp = stack();
+    while (front != null) {
+      temp.push(front!.data);
+      dequeue();
+    }
+    while (temp.top != null) {
+      enqueue(temp.top!.data);
+      temp.pop();
     }
   }
 }
 
 void main() {
-  LinkedList l = LinkedList();
-  l.enqueqe([1, 2, 3, 4]);
-  l.printList;
-  print('***********');
-  l.printList();
+  Queue q = Queue();
+  q.enqueue(9);
+  q.enqueue(3);
+  q.enqueue(7);
+  q.display();
+  print('************');
+  q.reversed();
+  q.display();
 }
