@@ -1,16 +1,17 @@
-insertionSort(List<int> list) {
-  for (int i = 1; i < list.length; i++) {
-    int current = list[i];
-    int j = i - 1;
-    while (j >= 0 && list[j] > current) {
-      list[j + 1] = list[j];
-      j--;
+selection(List list) {
+  for (int i = 0; i < list.length; i++) {
+    int min = i;
+    for (int j = 0; j < list.length; j++) {
+      if (list[min] > list[j]) {
+        min = j;
+      }
     }
-    list[j + 1] = current;
+    int temp = list[min];
+    list[min] = list[i];
+    list[i] = temp;
   }
-  return list;
 }
 
 void main() {
-  print(insertionSort([2, 7, 0, 45, 72, 1]));
+ print (selection([1, 2, 3, 4, 0, -7]));
 }
