@@ -1,29 +1,41 @@
-/**selection sort using recurssion */
-selection(List list) {
- return helper(list, 0);
+class Queue {
+  List queue = [];
+  enqueue(int value) {
+    queue.add(value);
+  }
+
+  dequeue() {
+    if (queue.isEmpty) {
+      return;
+    } else {
+      return queue.removeAt(0);
+    }
+  }
 }
 
-helper(List list, int i) {
-  if (i >=list.length) {
-    return list;
+class StackQue {
+  Queue q1 = Queue();
+  Queue q2 = Queue();
+  push(int value) {
+    while (q1.queue.isNotEmpty) {
+      q2.enqueue(q1.dequeue());
+    }
+    q1.enqueue(value);
+    while (q2.queue.isNotEmpty) {
+      q1.enqueue(q2.dequeue());
+    }
+    return q1.queue;
   }
-  int min = findMin(list, i, i + 1);//to find min index we are creating a new recurssive fun(Line 17)
-  int temp = list[min];
-  list[min] = list[i ];
-  list[i ] = temp;
- return helper(list, i + 1);
-}
 
-findMin(List list, int min, int j) {
-  if (j >= list.length) {
-    return min;
+  pop() {
+    q1.dequeue();
   }
-  if (list[min] > list[j]) {
-    min = j;
-  }
- return findMin(list, min, j + 1);
 }
 
 void main() {
-  print(selection([1, 2, 3, 4, 0, -7]));
+  StackQue stack = StackQue();
+  stack.push(8);
+  stack.push(2);
+  stack.pop();
+  print(stack.q1.queue);
 }
