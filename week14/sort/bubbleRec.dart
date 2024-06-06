@@ -1,3 +1,5 @@
+/** bubble sort using recurssion */
+
 bubble(List list) {
  
   return helper(list, 0);
