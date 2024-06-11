@@ -10,6 +10,8 @@ class Node {
 class BST {
   Node? root;
 
+  
+  //to insert an node
   insert(int data) {
     Node? newNode = Node(data);
     if (root == null) {
@@ -34,6 +36,9 @@ class BST {
     }
   }
 
+/* =================================================*/
+   
+//to remove an node
   remove(int data) {
     removeHelper(data, root, null);
   }
@@ -86,6 +91,11 @@ class BST {
     }
   }
 
+/* =================================================*/
+
+ 
+ // return true if the tree contains the value
+
   bool contains(int value) {
     Node? current = root;
     while (current != null) {
@@ -100,6 +110,9 @@ class BST {
     return false;
   }
 
+  /* =================================================*/
+
+
 //print nodes inorder
   inOrder() {
     inOrderHelper(root);
@@ -113,6 +126,8 @@ class BST {
     }
   }
 
+/* =================================================*/
+
   //toprint preorder
   preOder() {
     preOderHelper(root);
@@ -125,6 +140,9 @@ class BST {
       preOderHelper(current.right);
     }
   }
+/* =================================================*/
+
+//to print post order
 
   postOrder() {
     postOderHelper(root);
@@ -137,6 +155,10 @@ class BST {
       stdout.write('${current.data} ');
     }
   }
+
+/* =================================================*/
+
+//to find closest elemnt to the target  in the tree
 
   findClosest(int target) {
     Node? current = root;
