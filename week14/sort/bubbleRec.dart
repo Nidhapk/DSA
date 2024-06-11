@@ -2,30 +2,29 @@
 
 bubble(List list) {
  
-  return helper(list, 0);
+  return outerLopp(list, 0);
 }
 
-helper(List list, int i) {
+outerLopp(List list, int i) {
   if (i >= list.length) {
     return list;
   }
-  swap(list,list.length-i, 1);
-  return helper(list, i+1);
+  innerLoop(list, 1, list.length - i);
+  return outerLopp(list, i + 1);
 }
 
-swap(List list,int length, int j) {
-  if (j >=length) {
-    return ;
+innerLoop(List list, int j, int length) {
+  if (j >= length) {
+    return;
   }
-   if (list[j] < list[j - 1]) {
+  if (list[j] < list[j - 1]) {
     int temp = list[j];
     list[j] = list[j - 1];
     list[j - 1] = temp;
-   
   }
-  swap(list,length,j+1);
+  innerLoop(list, j + 1, length);
 }
 
 void main() {
-  print(bubble([8, 9, 500, 45, 76, 200, 1]));
+  print(bubble([9, 0, 45, 600, 92, 1]));
 }

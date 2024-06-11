@@ -1,29 +1,32 @@
-bubble(List list) {
- 
-  return helper(list, 0);
-}
-
-helper(List list, int i) {
-  if (i >= list.length) {
+mergeSort(List list) {
+  if (list.length <= 1) {
     return list;
   }
-  swap(list,list.length-i, 1);
-  return helper(list, i+1);
+  int middle = list.length ~/ 2;
+  List left = list.sublist(0, middle);
+  List right = list.sublist(middle);
+  return mergeList(mergeSort(left), mergeSort(right));
 }
 
-swap(List list,int length, int j) {
-  if (j >=length) {
-    return ;
+mergeList(List left, List right) {
+  List newList = List.filled(left.length + right.length, 0);
+  int i = 0, j = 0, k = 0;
+  while (i < left.length && j < right.length) {
+    if (left[i] < right[j]) {
+      newList[k++] = left[i++];
+    } else {
+      newList[k++] = right[j++];
+    }
   }
-   if (list[j] < list[j - 1]) {
-    int temp = list[j];
-    list[j] = list[j - 1];
-    list[j - 1] = temp;
-   
+  while (i < left.length) {
+    newList[k++] = left[i++];
   }
-  swap(list,length,j+1);
+  while (j < right.length) {
+    newList[k++] = right[j++];
+  }
+  return newList;
 }
 
 void main() {
-  print(bubble([8, 9, 500, 45, 76, 200, 1]));
+  print(mergeSort([4, 6, 2, 100, 45, 500]));
 }
