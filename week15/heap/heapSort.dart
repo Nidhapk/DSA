@@ -9,7 +9,7 @@ class HeapSort {
       swap(list, 0, i);
       heapifyDown(list, 0, i);
     }
-    return list;
+    return list[list.length-2];
   }
 
   heapifyDown(List list, int current, int size) {
@@ -19,6 +19,7 @@ class HeapSort {
     if (left < size && list[left] > list[maxIndex]) {
       maxIndex = left;
     }
+    
     if (right < size && list[right] > list[maxIndex]) {
       maxIndex = right;
     }
@@ -36,6 +37,7 @@ class HeapSort {
 }
 
 void main() {
-  HeapSort heap = HeapSort();print(heap.heapSort([6, 8, 34, 12, 1, 0, 9]))
-  ;
+  HeapSort heap = HeapSort();
+  print(heap.heapSort([6, 8, 34, 12, 1, 0, 9]));
+
 }

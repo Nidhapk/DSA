@@ -1,3 +1,5 @@
+import 'dart:math';
+
 class Node {
   int data;
   Node? left;
@@ -31,27 +33,26 @@ class BST {
     }
   }
 
-  validate() {
-   return validateHel(root);
+  findHeight() {
+   return getHeight(root);
   }
 
-  validateHel(Node? current) {
-    if(current != null && current.left!=null && current.right !=null) {
-      if (current.data > current.left!.data ||
-          current.data < current.right!.data) {
-        return false;
-      }
-      validateHel(current.left);
-      validateHel(current.right);
+  getHeight(Node? current) {
+    if (current == null) {
+      return 0;
+    } else {
+      int leftHeight = getHeight(current.left);
+      int rightheight = getHeight(current.right);
+      return 1 + max(leftHeight, rightheight);
     }
-    return true;
   }
 }
 
 void main() {
   BST bst = BST();
-  bst.insert(3);
-  bst.insert(5);
-
-  print(bst.validate());
+  bst.insert(9);
+  bst.insert(7);
+  bst.insert(10);
+  bst.insert(22);
+  print(bst.findHeight());
 }

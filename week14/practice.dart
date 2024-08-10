@@ -1,16 +1,16 @@
-mergeSort(List list) {
+sort(List<int> list) {
   if (list.length <= 1) {
     return list;
   }
   int middle = list.length ~/ 2;
-  List left = list.sublist(0, middle);
-  List right = list.sublist(middle);
-  return mergeList(mergeSort(left), mergeSort(right));
+  List<int> left = list.sublist(0, middle);
+  List<int> right = list.sublist(middle);
+  return mergeList(sort(left), sort(right));
 }
 
-mergeList(List left, List right) {
-  List newList = List.filled(left.length + right.length, 0);
+mergeList(List<int> left, List<int> right) {
   int i = 0, j = 0, k = 0;
+  List<int> newList = List.filled(left.length + right.length, 0);
   while (i < left.length && j < right.length) {
     if (left[i] < right[j]) {
       newList[k++] = left[i++];
@@ -28,5 +28,5 @@ mergeList(List left, List right) {
 }
 
 void main() {
-  print(mergeSort([4, 6, 2, 100, 45, 500]));
+  print(sort([45, 210, 1, 67, 90, 45, 67, 32]));
 }
